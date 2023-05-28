@@ -1,8 +1,23 @@
+#include "pch.h"
+
 #include "gui.h"
 
-#include "../UI/ImGui/imgui.h"
-#include "../UI/ImGui/imgui_impl_dx9.h"
-#include "../UI/ImGui/imgui_impl_win32.h"
+#include "imgui.h"
+#include "imgui_impl_dx9.h"
+#include "imgui_impl_win32.h"
+
+bool gui::exit_flag = true;
+
+HWND gui::window = nullptr;
+WNDCLASSEXA gui::windowClass = {};
+
+//points for window movement
+POINTS gui::position = {};
+
+//direct x state vars
+PDIRECT3D9 gui::d3d = nullptr;
+LPDIRECT3DDEVICE9 gui::device = nullptr;
+D3DPRESENT_PARAMETERS gui::presentParameters = {};
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
 	HWND window,
@@ -218,14 +233,14 @@ void gui::EndRender() noexcept {
 }
 
 void gui::Render() noexcept {
-	ImGui::SetNextWindowPos({0,0});
-	ImGui::SetNextWindowSize({WIDTH, HEIGHT});
-	ImGui::Begin("Hello",
-		&exit,
+
+	ImGui::SetNextWindowPos({ 0, 0 });
+	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });
+	ImGui::Begin("ImGui D3D9",
+		&exit_flag,
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoMove
+		ImGuiWindowFlags_NoCollapse
 	);
 
 	ImGui::Button("Test");

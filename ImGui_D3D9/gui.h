@@ -3,22 +3,22 @@
 
 namespace gui {
 	//constant window size
-	constexpr int WIDTH = 500;
-	constexpr int HEIGHT = 300;
+	constexpr int WIDTH = 800;
+	constexpr int HEIGHT = 500;
 
-	inline bool exit = true;
-	
+	extern bool exit_flag;
+
 	//winapi window vars
-	inline HWND window = nullptr;
-	inline WNDCLASSEXA windowClass = {};
+	extern HWND window;
+	extern WNDCLASSEXA windowClass;
 
 	//points for window movement
-	inline POINTS position = {};
+	extern POINTS position;
 
 	//direct x state vars
-	inline PDIRECT3D9 d3d = nullptr;
-	inline LPDIRECT3DDEVICE9 device = nullptr;
-	inline D3DPRESENT_PARAMETERS presentParameters = {};
+	extern PDIRECT3D9 d3d;
+	extern LPDIRECT3DDEVICE9 device;
+	extern D3DPRESENT_PARAMETERS presentParameters;
 
 	//handle window creation & destruction
 	void CreateHWindow(
