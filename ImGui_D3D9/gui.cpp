@@ -88,7 +88,7 @@ long __stdcall WindowProcess(
 
 void gui::CreateHWindow(
 	const char* windowName,
-	const char* className) noexcept {
+	const char* className) {
 	windowClass.cbSize = sizeof(WNDCLASSEXA);
 	windowClass.style = CS_CLASSDC;
 	windowClass.lpfnWndProc = WindowProcess;
@@ -122,12 +122,12 @@ void gui::CreateHWindow(
 	UpdateWindow(window);
 }
 
-void gui::DestroyHWindow() noexcept {
+void gui::DestroyHWindow() {
 	DestroyWindow(window);
 	UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
 }
 
-bool gui::CreateDevice() noexcept {
+bool gui::CreateDevice() {
 	d3d = Direct3DCreate9(D3D_SDK_VERSION);
 
 	if (!d3d)
@@ -155,7 +155,7 @@ bool gui::CreateDevice() noexcept {
 
 }
 
-void gui::ResetDevice() noexcept {
+void gui::ResetDevice() {
 	ImGui_ImplDX9_InvalidateDeviceObjects();
 
 	const auto result = device->Reset(&presentParameters);
@@ -166,7 +166,7 @@ void gui::ResetDevice() noexcept {
 	ImGui_ImplDX9_CreateDeviceObjects();
 }
 
-void gui::DestroyDevice() noexcept {
+void gui::DestroyDevice() {
 	if (device) {
 		device->Release();
 		device = nullptr;
@@ -178,7 +178,7 @@ void gui::DestroyDevice() noexcept {
 	}
 }
 
-void gui::CreateImGui() noexcept {
+void gui::CreateImGui() {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ::ImGui::GetIO();
@@ -191,13 +191,13 @@ void gui::CreateImGui() noexcept {
 	ImGui_ImplDX9_Init(device);
 }
 
-void gui::DestroyImGui() noexcept {
+void gui::DestroyImGui() {
 	ImGui_ImplDX9_Shutdown();
 	ImGui_ImplWin32_Shutdown();
 	ImGui::DestroyContext();
 }
 
-void gui::BeginRender() noexcept {
+void gui::BeginRender() {
 	MSG message;
 	while (PeekMessage(&message, 0, 0, 0, PM_REMOVE)) {
 		TranslateMessage(&message);
@@ -210,7 +210,7 @@ void gui::BeginRender() noexcept {
 	ImGui::NewFrame();
 }
 
-void gui::EndRender() noexcept {
+void gui::EndRender() {
 	ImGui::EndFrame();
 
 	device->SetRenderState(D3DRS_ZENABLE, FALSE);
@@ -232,7 +232,7 @@ void gui::EndRender() noexcept {
 		ResetDevice();
 }
 
-void gui::Render() noexcept {
+void gui::Render() {
 
 	ImGui::SetNextWindowPos({ 0, 0 });
 	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });

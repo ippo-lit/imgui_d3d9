@@ -23,20 +23,20 @@ namespace gui {
 	//handle window creation & destruction
 	void CreateHWindow(
 		const char* windowName,
-		const char* className) noexcept;
-	void DestroyHWindow() noexcept;
+		const char* className);
+	void DestroyHWindow();
 
 	//handle device creation & destruction
-	bool CreateDevice() noexcept;
-	void ResetDevice() noexcept;
-	void DestroyDevice() noexcept;
+	bool CreateDevice();
+	void ResetDevice();
+	void DestroyDevice();
 
 	//handle ImGui creation & destruction
-	void CreateImGui() noexcept;
-	void DestroyImGui() noexcept;
+	void CreateImGui();
+	void DestroyImGui();
 
-	void BeginRender() noexcept;
-	void EndRender() noexcept;
-	void Render() noexcept;
+	void BeginRender();
+	void EndRender();
+	void Render();
 }
 
